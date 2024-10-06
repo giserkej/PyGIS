@@ -228,6 +228,7 @@
 #     f.write(img)
 
 # os模块 os.rename(old name, new name)重命名    os.remove(file)删除文件     os.mkdir()创建文件夹    os.rmdir()删除文件夹    os.getcwd()获取当前所在目录     os.getlistdir()获取当前文件夹中的所有文件
-import os
-print(os.getcwd())
-print(os.listdir())
+# import os
+# print(os.getcwd())
+# print(os.listdir())
+
