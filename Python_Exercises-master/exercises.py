@@ -337,22 +337,109 @@
 # q.put('你好')
 # print(dir(q))
 
-import gevent
-import time
-def sing():
-    print('在唱歌')
-    gevent.sleep(1)
-    print('唱完歌了')
-def dance():
-    print('在跳舞')
-    gevent.sleep(1)
-    print('跳完舞了')
-if __name__ == '__main__':
-    # 创建协程对象
-    gs = gevent.spawn(sing) # 创建协程对象
-    gd = gevent.spawn(dance)
+# import gevent
+# import time
+# def sing():
+#     print('在唱歌')
+#     gevent.sleep(1)
+#     print('唱完歌了')
+# def dance():
+#     print('在跳舞')
+#     gevent.sleep(1)
+#     print('跳完舞了')
+# if __name__ == '__main__':
+#     # 创建协程对象
+#     gs = gevent.spawn(sing) # 创建协程对象
+#     gd = gevent.spawn(dance)
 
-    gs.join()
-    gd.join()
-    # gevent.sleep() # 耗时操作
-    # gevent.joinall() # 等所有协程对象执行完毕之后主程序再退出
+#     gs.join()
+#     gd.join()
+#     # gevent.sleep() # 耗时操作
+#     # gevent.joinall() # 等所有协程对象执行完毕之后主程序再退出
+
+
+# 正则表达式
+# 导入re模块，使用match方法进行匹配，能够匹配出XXX开头的字符串，如果没有返回none。如果数据匹配成功，则使用group方法提取数据
+# import re
+# res = re.match('bin', 'bingbing')
+# print(res.group())
+
+# .可以匹配除\n以外的任何字符串
+# res2 = re.match('.', 'ke')
+# print(res2.group())
+
+# []内提供的字符可以被匹配
+# res = re.match('[hel]', 'hello') 和下面的效果是一样的，提取的结果都是h
+# res = re.match('[he]', 'hello')
+# res = re.match('[he]', 'ello') #提取的结果是e
+# res = re.match('[0-9]', '586209')
+# res = re.match('[a-zA-Z]', 'Hello')
+
+
+# \d通常用来匹配数字0 - 9
+# res = re.match('\d\d', '7595')
+
+# \D用来匹配非数字  \s用来匹配空格和tab     \S匹配非空白    \w匹配单词字符，包括数字和中英文    \W匹配非单词字符
+# *表示匹配的前一个字符出现0次或者无数次
+# +表示匹配的前一个字符出现1次或者无数次
+# ?表示匹配的前一个字符出现1次或者0次
+# print(res.group())
+
+
+# 匹配开头和结尾  ^ &
+
+# \num匹配分组,通常用来匹配网页标签
+# import re
+# </html>login</html>
+# res = re.match('<(\w*)>\w*</\\1>', '<html>login</html>')   # 这里\w* = 1,所以要用\num来描述
+# res2 = re.match('<(\w*)><(\w*)>\w*</\\2></\\1*>', '<html><body>login</body></html>')
+# print(res.group())
+# print(res2.group())
+
+# 网页判断
+# import re
+# li = ['www.baidu.com', 'www.python.org', 'http.jd.cn', 'www.google.en']
+# for i in li:
+#     res = re.match('\w*.\w*.(com|org|cn|en)', i)
+#     if res != None:
+#         print('可正常输出的网页有:',res.group())
+#     else:
+#         print('该网页输出不正常.', i)
+
+
+
+# search(),扫描整个字符串并返回第一个成功匹配的对象,失败返回none.和match不同的是,match必须从开头进行匹配,失败则为none;但search是对全文进行匹配.
+# import re
+# res = re.search('th', 'abcthought')
+# print(res.group())
+
+# findall()返回所有匹配符合的数据,组成一个列表
+# import re
+# res = re.findall('th', 'outhghth')
+# res2 = re.findall('\d', 'p23456984ython')
+# print(res)
+# print(res2)
+
+
+# sub方法
+# pattern:需要被替换的旧内容
+# repl:替换的新内容
+# string:字符串
+# count:替换次数
+
+# import re
+# res = re.sub('Python', 'KeJin', 'helloPython')
+# res2 = re.sub('\d', '2', '这是这个月的第30天', 1)
+# print(res)
+# print(res2)
+
+
+# import re
+# res = re.split(',', 'hello, python')
+# print(res)
+
+import os
+# Operator = os.name
+print(os.name)
+print(os.getenv('path'))
+print(os.path.split(r'C:\ProgramData\Adobe\ARM\S\137\AdobeARM.msi'))
