@@ -173,7 +173,7 @@
 #         return feb(x - 2) + feb(x - 1)
 #     else:
 #         return x
-# print('斐波那契额数列第%s个数值是：%s' %(50, feb(50)))
+# print('斐波那契额数列第%s个数值是：%s' %(40, feb(40)))
 # time1 = time.time() - time0
 # print('用时：%s秒' %time1)
 
@@ -233,3 +233,126 @@
 # print(os.listdir())
 
 # os.rename('./Python_Exercises-master/first.py','./Python_Exercises-master/exercises.py')
+
+# 可迭代对象
+# from _collections_abc import Iterable
+# str = '123456'
+# res = isinstance(str, Iterable)
+# res2 = isinstance(12345, int)
+# print(res)
+# print(res2)
+
+# 可迭代对象不一定是迭代器对象，但迭代器对象一定是可迭代对象；如果要将可迭代对象转换为迭代器对象，可以使用iter方法
+
+
+# 生成器：一边循环一边生成的自定义迭代器，称为generator  有yield关键字函数就是生成器函数
+
+
+# li = []
+# x = int(input('你输入次数:'))
+# def appendA():
+#     li.append('a')
+# for i in range(x):
+#     appendA()
+# print(li)
+
+# 线程
+# import threading
+# import time
+
+# # 定义全局变量
+
+# def wData():
+#     for i in range(5):
+#         li.append(i)
+#         # time.sleep(1)
+#     print('写入的数据是：',li)
+
+# def rData():
+#     print('读取的数据是：', li)
+
+# if __name__ == '__main__':
+#     li = []
+#     time0 = time.time()
+#     # 创建子线程
+#     t1 = threading.Thread(target=wData)
+#     t2 = threading.Thread(target=rData)
+#     # 开启线程
+#     t1.start()
+#     t1.join()
+#     t2.start()
+#     t2.join()
+#     time1 = time.time() - time0
+#     print('用时%f秒'  % time1)
+
+# 线程同步
+# 有两种方式，一种是线程等待（阻塞），也就是join；第二是互斥锁。互斥锁就是对共享数据进行锁定，保证同一时刻只有一个线程在访问数据。但是注意，上锁必须解锁，否则会形成死锁。上锁acquire()，解锁release()
+
+
+# 队列间通信 q.put()放入数据  q.get()获取数据     q.empty()队列是否为空   q.qsize()返回当前消息数量   q.full()判断队列是否已满
+# import queue
+# q = queue.Queue(3)
+
+# q.put('爱你到老')
+# q.put('你在做梦')
+# q.put('爱在深秋')
+# print(q.qsize())
+# print(q.get()) # 获取队列中的一条消息，并从队列中移除
+# print(q.get())
+# print(q.get())
+# print(q.full())
+# print(q.empty())
+
+# import multiprocessing
+# from multiprocessing import Process, Queue
+# import time
+# li = ['张三','李四','王五','赵六','柯七']
+# # list1 = []
+# def wdata(q1):
+#     for i in range(30):
+#         print(f'{i}已经被放入')
+#         q1.put(i)
+#         time.sleep(0.2)
+# def rdata(q2):
+#     # list2 = []
+#     while True:
+#         if q2.empty():
+#             break
+#         else:
+#             # for i in list1:
+#             print('取出队列，',q2.get())
+# if __name__ == '__main__':
+#     q = Queue()
+#     p1 = Process(target=wdata, args=(q,))
+#     p2 = Process(target=rdata, args=(q,))
+#     p1.start()
+#     p1.join()
+#     # print(list1)
+#     p2.start()
+#     p2.join()
+
+
+# from multiprocessing import Queue
+# q = Queue()
+# q.put('你好')
+# print(dir(q))
+
+import gevent
+import time
+def sing():
+    print('在唱歌')
+    gevent.sleep(1)
+    print('唱完歌了')
+def dance():
+    print('在跳舞')
+    gevent.sleep(1)
+    print('跳完舞了')
+if __name__ == '__main__':
+    # 创建协程对象
+    gs = gevent.spawn(sing) # 创建协程对象
+    gd = gevent.spawn(dance)
+
+    gs.join()
+    gd.join()
+    # gevent.sleep() # 耗时操作
+    # gevent.joinall() # 等所有协程对象执行完毕之后主程序再退出
