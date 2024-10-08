@@ -438,8 +438,28 @@
 # res = re.split(',', 'hello, python')
 # print(res)
 
-import os
-# Operator = os.name
-print(os.name)
-print(os.getenv('path'))
-print(os.path.split(r'C:\ProgramData\Adobe\ARM\S\137\AdobeARM.msi'))
+# import os
+# # Operator = os.name
+# print(os.name)
+# print(os.getenv('path'))
+# print(os.path.split(r'C:\ProgramData\Adobe\ARM\S\137\AdobeARM.msi'))
+
+
+# import sys
+# platform = sys.platform
+# encoding = sys.getdefaultencoding()
+# print(platform)
+# print(encoding)
+# print(sys.version)
+
+# import time
+# localtime = time.localtime()
+# print(localtime)
+# print(time.asctime())
+# print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))   2024-10-08 14:09:07
+
+# logging模块记录日志信息
+# import logging
+# logging.basicConfig(filename='hello.log', filemode='a')
+# logging.warning('I am Iron Man!')
+# logging.fatal('我是fatal')
